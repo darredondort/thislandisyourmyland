@@ -1,3 +1,4 @@
+## Perplexity AI:
 - *Can Twine Snowman work with JSON data? How do you incorporate it?*
 - *Using Twine Snowman and its integrated jQuery, populate the inner HTML of the elements with class "thumb-title" from a string array of 5 elements called s.currentList.*
 - *Change this line of code so that the  s.currentList[index] is used to extract from a JSON called nodesData the videoTitle property and use this string to populate the inner HTML of the corresponding thumb-title element.*
