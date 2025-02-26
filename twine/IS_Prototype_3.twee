@@ -1,0 +1,1534 @@
+:: StoryTitle
+IS_Prototype_3
+
+
+:: StoryData
+{
+  "ifid": "165956f0-7174-4269-8352-36f6db3adcd0",
+  "format": "Snowman",
+  "format-version": "2.0.2",
+  "start": "00-intro",
+  "zoom": 1
+}
+
+
+:: 0-1-context {"position":"300,400","size":"100,100"}
+<div class="main-content gradient-black">
+  <section class="article-section  vh-row">
+    <div class="row">
+        <h2 class="subtitle">“We are looking for the <span class="resist-text">worst first</span>.”</h2>
+    </div>
+
+    <div class="row">
+      <p class="narrator">During the first two days, 766 people were arrested on the southwest border, according to Trump's border czar, Tom Homan, who assured they were concentrating first on immigrants with criminal backgrounds.</p>
+
+      <p class="narrator">However, reports of undiscrimante arrests spread across the country, as schools, churches, work places and private homes became ICE targets.</p>
+
+     <!-- <p class="narrator"><span class="question">Which side are you on?</p>
+    </div> --!>
+
+  </section>
+  
+ <div  class="full-background-img blurred">
+
+ </div>
+
+<div class="row main-button-container">
+	<div class="start-button">[[Which side are you on?->0-2-choose-narrative]]</div>
+</div>
+    
+</div>
+
+
+
+:: 0-2-choose-narrative {"position":"300,550","size":"100,100"}
+<div class="main-content gradient-black">
+
+      <div class="thumb-nav-container">
+        <div class="branch-option" id="endorse"> 
+            <p class="thumb-title">ENDORSE ICE</p>
+        </div>
+
+        <div class="branch-option"  id="resist"> 
+            <p class="thumb-title">RESIST ICE</p>
+        </div>
+    </div>
+    
+</div>
+
+<div class="row main-button-container">
+	<div class="start-button invisible">[[What happened during the 1st week? ->1-0-week-01]]</div>
+</div>
+
+ <div  class="full-background-img blurred">
+
+
+
+<%
+	if (s.nodesData && s.edgesData) {
+    	console.log("Data loaded.")
+        console.log(s.nodesData)
+		console.log(s.edgesData)
+    } else {
+    	console.log("Data was not loaded.")
+    }
+    
+
+
+
+    // selected endorse
+	$(document).ready(function() {
+	    $('#endorse').on('click', function() {
+        	
+          $('.branch-option').addClass('disabled');
+          // Highlight selected thumb-option
+          $(this).css('opacity', '1');
+          $(this).addClass('branch-endorse');
+
+        
+          s.userPathData.initialBranch = "endorsed";
+          s.currentList = [];
+          s.currentList = s.endorseList;
+          s.userPathData.videoList = s.endorseList;
+            
+          for (let i = 0; i < s.endorseList.length; i++) {
+              for (let j = 0; j < s.nodesData.length; j++) {
+                  if (s.nodesData[j].videoId === s.endorseList[i]) {
+                      let node = s.nodesData[j];
+                      s.userPathData.videoCount++;
+                      s.userPathData.viewCount += node.viewCount;
+                      s.userPathData.commentCount += node.commentCount;
+                      s.userPathData.durationMinCount += node.durationMin;
+                      s.userPathData.channelList.push(node.channelId);
+                      s.userPathData.channelTitleList.push(node.channelTitle);
+                      s.userPathData.tagList = s.userPathData.tagList.concat(node.tags);
+                      break; // Exit the inner loop once a match is found
+                  }
+              }
+        }
+
+	        console.log(`Selected ${s.userPathData.initialBranch}`);
+	        console.log("User video list:");
+	        console.log(s.currentList)
+	        console.log("Updated user path data:");
+	        console.log(s.userPathData);
+            
+   			 $('.start-button').removeClass('invisible');
+             $('#resist').addClass('blurred');
+
+
+	    });
+	});
+    
+    
+    
+    // selected resist
+	$(document).ready(function() {
+	    $('#resist').on('click', function() {
+        	
+          $('.branch-option').addClass('disabled');
+          // Highlight selected thumb-option
+          $(this).css('opacity', '1');
+          $(this).addClass('branch-resist');
+
+        
+          s.userPathData.initialBranch = "resisted";
+          s.currentList = [];
+          s.currentList = s.resistList;
+          s.userPathData.videoList = s.resistList;
+            
+          for (let i = 0; i < s.resistList.length; i++) {
+              for (let j = 0; j < s.nodesData.length; j++) {
+                  if (s.nodesData[j].videoId === s.resistList[i]) {
+                      let node = s.nodesData[j];
+                      s.userPathData.videoCount++;
+                      s.userPathData.viewCount += node.viewCount;
+                      s.userPathData.commentCount += node.commentCount;
+                      s.userPathData.durationMinCount += node.durationMin;
+                      s.userPathData.channelList.push(node.channelId);
+                      s.userPathData.channelTitleList.push(node.channelTitle);
+                      s.userPathData.tagList = s.userPathData.tagList.concat(node.tags);
+                      break; // Exit the inner loop once a match is found
+                  }
+              }
+        }
+
+	        console.log(`Selected ${s.userPathData.initialBranch}`);
+	        console.log("User video list:");
+	        console.log(s.currentList)
+	        console.log("Updated user path data:");
+	        console.log(s.userPathData);
+            
+   			 $('.start-button').removeClass('invisible');
+             $('#endorse').addClass('blurred');
+
+
+	    });
+	});
+    
+    
+
+%>
+
+
+
+:: 00-intro {"position":"300,250","size":"100,100"}
+<div class="parallax-cover"> <div class="main-title-cointainer">
+    	<h1 id="main-title">This Land is <span class="strike">Your</span> <span class="blue"> <br/>My Land</span></h1>
+    </div>
+</div>
+
+
+<div class="main-content gradient-black">
+	<section class="article-section">
+
+
+
+<div class="row">
+	<p class="narrator">On January 20 2025, Donald J. Trump assumed office for the second time. That same day, ICE raids were reported across the country, signaling the immediate start of a much-promissed massive deportation strategy.</p>
+	<p class="narrator">Millions followed what was happening on YouTube, harnessing millions of views and triggering hundreds of thousands of user comments on the platform, mirroring a heated debate about migration reform and control in the United States.</p>
+	<p class="narrator">This web experience follows the traces left by user comments on the 200 most seen videos related to “ICE” and targeted to US audiences by YouTube during the first 4 weeks of Trump's 2025 administration.</p>
+    <p class="narrator">Each choice you make, will determine the next videos you will be exposed to, following the previously left paths by users when commenting in more than one video.</p>
+</div>
+
+
+<div class="row">
+	<div class="narrator loading">Loading...</div>
+	<div class="start-button">[[START ->0-1-context]]</div>
+</div>
+
+
+
+    </section>    
+</div>
+
+
+
+
+
+<%
+async function loadJSON(url) {
+  return new Promise((resolve, reject) => {
+    $.getJSON(url, (data) => resolve(data)).fail((_, status, error) => reject(error));
+  });
+}
+
+async function loadData() {
+  try {
+    const [nodesData, edgesData] = await Promise.all([
+      loadJSON('https://gist.githubusercontent.com/darredondort/3ef6be70e07a8fb24efe4ad193e06c42/raw/d7305ac5243865543bca9fba22db42be1b36df59/20250120-20250220_yt_video-cocomment-net_ICE_USrel_10-nodes.json'),
+      loadJSON('https://gist.githubusercontent.com/darredondort/33730e07a18fc22be9bb410a5f231e6c/raw/24dc360bd28580721aa9d6e18e09bc5bc10290b6/20250120-20250220_yt_video-cocomment-net_ICE_USrel_10-edges.json')
+    ]);
+
+    s.nodesData = nodesData;
+    console.log('nodesData loaded');
+     console.log(nodesData);
+
+    s.edgesData = edgesData;
+    console.log('edgeData loaded');
+    console.log(edgesData);
+
+
+    $('.start-button').css('visibility', 'visible');
+    $('.loading').css('visibility', 'hidden');    
+  } catch (error) {
+    console.error('Error loading data:', error);
+  }
+}
+
+$(document).ready(() => {
+  loadData();
+});
+
+ // s.videoTopViews = ["2RfVkyHaroE", "gvmgV1PIfAU", "SiiVMNud1xQ", "6YAN4nqqtaY", "jReZYXO-j0g"];
+ 
+ s.endorseList = ["2RfVkyHaroE", "N8nGlCXS8IQ", "gvmgV1PIfAU", "SiiVMNud1xQ", "6YAN4nqqtaY", "jReZYXO-j0g", "-YOgMeeB3lQ", "bQm7Haj63y8", "PuuszllCSBI", "4pWFlnQhlNA", "vQUPb47wA7Y", "u1YhpsuxODY", "kkaknv0K23c", "RYhgoHYZy9g", "73h1iNQ8XRk", "ESLahwPlynM", "qbvKh_sJ9y0", "XeyfrAdZ6sY", "oyP14K2BxNk", "OE7c7JmnX4g", "NafUC299XGc"];
+ 
+ s.resistList = ["1QFXI4xk1Dc", "KA0j-nf-IsA", "RuBYicKt8S8", "9vZeHXDcBeQ", "alYzD1Omx70", "vpqBciYTtXE", "jbV8fR9SXGw", "Boqljx1xJY8", "vujyCfl8yKI", "4hiIHUxSa4A", "SdNwwKWGrhk", "XbB10LlMKAw"];
+ 
+  s.userPathData = {
+      initialBranch: "",
+      videoCount: 0,
+      viewCount: 0,
+      commentCount: 0,
+      durationMinCount: 0,
+      seedList: [],
+      videoList: [],
+      channelList: [],
+      channelTitleList: [],
+      tagList: []
+  }
+
+  s.currentVideo = "";
+  s.currentList = [];
+  s.currentComments = [];
+  
+%>
+
+
+
+
+
+
+:: 1-0-week-01 {"position":"475,400","size":"100,100"}
+<div class="main-content gradient-black">
+  <section class="article-section">
+    <div class="row">
+    <h2 class="subtitle"><span class="branch-text">A first week of ICE operations...</span></h2>
+      <p class="narrator">During the first week of Trump's administration, these were the most viewed YouTube <span class="branch-text">videos that <%=s.userPathData.initialBranch%> ICE operations </span>. </p>
+      <p class="narrator"> <span class="question">Which video would you pick next?</span></p>
+    </div>
+  </section>
+</div>
+
+    <div class="thumb-nav-container"></div>
+
+
+<div class="row main-button-container">
+	<div class="main-button invisible">[[Go to 2nd week ->2-0-week-02]]</div>
+</div>
+
+
+
+<%
+	// Check if data is loaded
+    
+	if (s.nodesData && s.edgesData) {
+	    console.log("Data loaded.")
+	    // console.log(s.nodesData)
+	    // console.log(s.edgesData)
+	} else {
+	    console.log("Data was not loaded.")
+	}
+
+	// console.log(s.currentList);
+
+
+	// Conditional initial styling
+    $(document).ready(function() {
+        if (s.userPathData.initialBranch == "endorsed") {
+        	$('.branch-text').addClass('endorse-text');
+        } else {
+            $('.branch-text').addClass('resist-text');
+        }
+      })
+
+	// Populate thumb image and title from JSON data
+    
+	$(document).ready(function() {
+	    const thumbContainer = $('.thumb-nav-container'); // Assume there's a container for the thumbs
+	    thumbContainer.empty(); // Clear existing thumb options
+
+	    s.currentList.forEach((currentVideoId, index) => {
+	        const matchingNode = s.nodesData.find(node => node.videoId === currentVideoId);
+	        if (matchingNode) {
+	            // Create the thumb-option structure
+	            const thumbOption = $('<a>').addClass('thumb-option');
+	            const thumbImg = $('<div>').addClass('thumb-img');
+	            const thumbTitle = $('<div>').addClass('thumb-title');
+
+	            // Populate thumb-title
+	            thumbTitle.html(matchingNode.videoTitle);
+
+	            // Set background image for thumb-img
+	            if (matchingNode.videoId) {
+	                // thumbImg.css('background-image', `url("https://img.youtube.com/vi/${matchingNode.videoId}/0.jpg")`);
+	                thumbImg.css('background-image', `url("https://i.ytimg.com/vi/${matchingNode.videoId}/maxresdefault.jpg")`);
+	            }
+
+	            // Assemble the thumb-option
+	            thumbOption.append(thumbImg).append(thumbTitle);
+
+	            // Add to container
+	            thumbContainer.append(thumbOption);
+	        }
+	    });
+	});
+
+
+
+
+	// Handle thumb hover and title reveal        
+
+    $(document).ready(function() {
+
+        $('.thumb-option').on('mouseenter', function() {
+            // change color on mouseenter
+            $(this).find('.thumb-title').css('color', '#F5F5F4');
+        }).on('mouseleave', function() {
+            // Reset color on mouseleave
+            $(this).find('.thumb-title').css('color', '#ADADAD');
+        });
+    });
+
+
+
+	// Handle thumb selection        
+
+	$(document).ready(function() {
+	    $('.thumb-option').on('click', function() {
+	        // Disable pointer events on all thumb-options
+	        $('.thumb-option').addClass('disabled');
+	        $('.thumb-option').addClass('blurred');
+	        $('.narrator').addClass('blurred');
+
+
+	        // Highlight selected thumb-option
+	        $(this).css('opacity', '1');
+	        $(this).removeClass('blurred');
+	        $(this).addClass('selected');
+
+
+	        // Find the index of the clicked thumb-option
+	        const index = $(this).index('.thumb-option');
+
+	        // Get the corresponding videoId from s.currentList
+	        s.currentVideo = s.currentList[index];
+
+	        // Clear the current s.currentList
+	        s.currentList = [];
+
+	        s.edgesData.forEach(edge => {
+	            if (edge.source === s.currentVideo) {
+	                const matchingNode = s.nodesData.find(node => node.videoId === edge.target);
+	                if (matchingNode) {
+	                    const videoDate = new Date(matchingNode.time);
+	                    const startDate = new Date('2025-01-27');
+	                    const endDate = new Date('2025-02-02');
+
+	                    if (videoDate >= startDate && videoDate <= endDate) {
+	                        s.currentList.push(edge.target);
+	                    }
+	                }
+	            }
+	        });
+
+	        s.userPathData.seedList.push(s.currentVideo);
+	        s.userPathData.videoList = s.userPathData.videoList.concat(s.currentList);
+
+	        for (let i = 0; i < s.currentList.length; i++) {
+	            for (let j = 0; j < s.nodesData.length; j++) {
+	                if (s.nodesData[j].videoId === s.currentList[i]) {
+	                    let node = s.nodesData[j];
+	                    s.userPathData.videoCount++;
+	                    s.userPathData.viewCount += node.viewCount;
+	                    s.userPathData.commentCount += node.commentCount;
+	                    s.userPathData.durationMinCount += node.durationMin;
+	                    s.userPathData.channelList.push(node.channelId);
+	                    s.userPathData.channelTitleList.push(node.channelTitle);
+	                    s.userPathData.tagList = s.userPathData.tagList.concat(node.tags);
+	                    break; // Exit the inner loop once a match is found
+	                }
+	            }
+	        }
+
+	        console.log(`Selected ${s.currentVideo}`);
+	        console.log("Co-comment video list:");
+	        console.log(s.currentList)
+	        console.log("Updated user path data:");
+	        console.log(s.userPathData);
+
+	        $('.main-button').removeClass('invisible');
+	    });
+	});
+%>
+
+
+
+:: 2-0-week-02 {"position":"650,400","size":"100,100"}
+<div class="main-content gradient-black">
+  <section class="article-section">
+    <div class="row">
+    <h2 class="subtitle"><span class="branch-text">A second week of ICE operations...</span></h2>
+      <p class="narrator">Most people who commented on the last video you chose, also commented on these videos.</p>
+      <p class="narrator"> <span class="question">Which video would you feel more inclined to see next? (Pick only one)</span></p>
+    </div>
+  </section>
+</div>
+
+    <div class="thumb-nav-container"></div>
+
+
+<div class="row main-button-container">
+	<div class="main-button invisible">[[Go to 3rd week ->3-0-week-03]]</div>
+</div>
+
+
+
+<%
+	// Check if data is loaded
+    
+	if (s.nodesData && s.edgesData) {
+	    console.log("Data loaded.")
+	    // console.log(s.nodesData)
+	    // console.log(s.edgesData)
+	} else {
+	    console.log("Data was not loaded.")
+	}
+
+	// console.log(s.currentList);
+
+
+	// Conditional initial styling
+    $(document).ready(function() {
+        if (s.userPathData.initialBranch == "endorsed") {
+        	$('.branch-text').addClass('endorse-text');
+        } else {
+            $('.branch-text').addClass('resist-text');
+        }
+      })
+
+	// Populate thumb image and title from JSON data
+    
+	$(document).ready(function() {
+	    const thumbContainer = $('.thumb-nav-container'); // Assume there's a container for the thumbs
+	    thumbContainer.empty(); // Clear existing thumb options
+
+	    s.currentList.forEach((currentVideoId, index) => {
+	        const matchingNode = s.nodesData.find(node => node.videoId === currentVideoId);
+	        if (matchingNode) {
+	            // Create the thumb-option structure
+	            const thumbOption = $('<a>').addClass('thumb-option');
+	            const thumbImg = $('<div>').addClass('thumb-img');
+	            const thumbTitle = $('<div>').addClass('thumb-title');
+
+	            // Populate thumb-title
+	            thumbTitle.html(matchingNode.videoTitle);
+
+	            // Set background image for thumb-img
+	            if (matchingNode.videoId) {
+	                // thumbImg.css('background-image', `url("https://img.youtube.com/vi/${matchingNode.videoId}/0.jpg")`);
+	                thumbImg.css('background-image', `url("https://i.ytimg.com/vi/${matchingNode.videoId}/maxresdefault.jpg")`);
+	            }
+
+	            // Assemble the thumb-option
+	            thumbOption.append(thumbImg).append(thumbTitle);
+
+	            // Add to container
+	            thumbContainer.append(thumbOption);
+	        }
+	    });
+	});
+
+
+
+
+
+
+	// Handle thumb hover and title reveal        
+
+    $(document).ready(function() {
+
+        $('.thumb-option').on('mouseenter', function() {
+            // change color on mouseenter
+            $(this).find('.thumb-title').css('color', '#F5F5F4');
+        }).on('mouseleave', function() {
+            // Reset color on mouseleave
+            $(this).find('.thumb-title').css('color', '#ADADAD');
+        });
+    });
+
+
+
+	// Handle thumb selection        
+
+	$(document).ready(function() {
+	    $('.thumb-option').on('click', function() {
+	        // Disable pointer events on all thumb-options
+	        $('.thumb-option').addClass('disabled');
+	        $('.thumb-option').addClass('blurred');
+	        $('.narrator').addClass('blurred');
+
+
+	        // Highlight selected thumb-option
+	        $(this).css('opacity', '1');
+	        $(this).removeClass('blurred');
+	        $(this).addClass('selected');
+
+
+	        // Find the index of the clicked thumb-option
+	        const index = $(this).index('.thumb-option');
+
+	        // Get the corresponding videoId from s.currentList
+	        s.currentVideo = s.currentList[index];
+
+	        // Clear the current s.currentList
+	        s.currentList = [];
+
+	        s.edgesData.forEach(edge => {
+	            if (edge.source === s.currentVideo) {
+	                const matchingNode = s.nodesData.find(node => node.videoId === edge.target);
+	                if (matchingNode) {
+	                    const videoDate = new Date(matchingNode.time);
+	                    const startDate = new Date('2025-02-03');
+	                    const endDate = new Date('2025-02-09');
+
+	                    if (videoDate >= startDate && videoDate <= endDate) {
+	                        s.currentList.push(edge.target);
+	                    }
+	                }
+	            }
+	        });
+
+	        s.userPathData.seedList.push(s.currentVideo);
+	        s.userPathData.videoList = s.userPathData.videoList.concat(s.currentList);
+
+	        for (let i = 0; i < s.currentList.length; i++) {
+	            for (let j = 0; j < s.nodesData.length; j++) {
+	                if (s.nodesData[j].videoId === s.currentList[i]) {
+	                    let node = s.nodesData[j];
+	                    s.userPathData.videoCount++;
+	                    s.userPathData.viewCount += node.viewCount;
+	                    s.userPathData.commentCount += node.commentCount;
+	                    s.userPathData.durationMinCount += node.durationMin;
+	                    s.userPathData.channelList.push(node.channelId);
+	                    s.userPathData.channelTitleList.push(node.channelTitle);
+	                    s.userPathData.tagList = s.userPathData.tagList.concat(node.tags);
+	                    break; // Exit the inner loop once a match is found
+	                }
+	            }
+	        }
+
+	        console.log(`Selected ${s.currentVideo}`);
+	        console.log("Co-comment video list:");
+	        console.log(s.currentList)
+	        console.log("Updated user path data:");
+	        console.log(s.userPathData);
+
+	        $('.main-button').removeClass('invisible');
+	    });
+	});
+%>
+
+
+
+:: 3-0-week-03 {"position":"825,400","size":"100,100"}
+<div class="main-content gradient-black">
+  <section class="article-section">
+    <div class="row">
+    <h2 class="subtitle"><span class="branch-text">A third week of ICE operations...</span></h2>
+      <p class="narrator">Most people who commented on the last video you chose, also commented on these videos.</p>
+      <p class="narrator"> <span class="question">Which video would feel deserves more discussion?</span></p>
+    </div>
+  </section>
+</div>
+
+    <div class="thumb-nav-container"></div>
+
+
+<div class="row main-button-container">
+	<div class="main-button invisible">[[Go to 4th week->4-0-week-04]]</div>
+</div>
+
+
+
+<%
+	// Check if data is loaded
+    
+	if (s.nodesData && s.edgesData) {
+	    console.log("Data loaded.")
+	    // console.log(s.nodesData)
+	    // console.log(s.edgesData)
+	} else {
+	    console.log("Data was not loaded.")
+	}
+
+	// console.log(s.currentList);
+
+
+	// Conditional initial styling
+    $(document).ready(function() {
+        if (s.userPathData.initialBranch == "endorsed") {
+        	$('.branch-text').addClass('endorse-text');
+        } else {
+            $('.branch-text').addClass('resist-text');
+        }
+      })
+
+	// Populate thumb image and title from JSON data
+    
+	$(document).ready(function() {
+	    const thumbContainer = $('.thumb-nav-container'); // Assume there's a container for the thumbs
+	    thumbContainer.empty(); // Clear existing thumb options
+
+	    s.currentList.forEach((currentVideoId, index) => {
+	        const matchingNode = s.nodesData.find(node => node.videoId === currentVideoId);
+	        if (matchingNode) {
+	            // Create the thumb-option structure
+	            const thumbOption = $('<a>').addClass('thumb-option');
+	            const thumbImg = $('<div>').addClass('thumb-img');
+	            const thumbTitle = $('<div>').addClass('thumb-title');
+
+	            // Populate thumb-title
+	            thumbTitle.html(matchingNode.videoTitle);
+
+	            // Set background image for thumb-img
+	            if (matchingNode.videoId) {
+	                // thumbImg.css('background-image', `url("https://img.youtube.com/vi/${matchingNode.videoId}/0.jpg")`);
+	                thumbImg.css('background-image', `url("https://i.ytimg.com/vi/${matchingNode.videoId}/maxresdefault.jpg")`);
+	            }
+
+	            // Assemble the thumb-option
+	            thumbOption.append(thumbImg).append(thumbTitle);
+
+	            // Add to container
+	            thumbContainer.append(thumbOption);
+	        }
+	    });
+	});
+
+
+
+
+	// Handle thumb hover and title reveal        
+
+    $(document).ready(function() {
+
+        $('.thumb-option').on('mouseenter', function() {
+            // change color on mouseenter
+            $(this).find('.thumb-title').css('color', '#F5F5F4');
+        }).on('mouseleave', function() {
+            // Reset color on mouseleave
+            $(this).find('.thumb-title').css('color', '#ADADAD');
+        });
+    });
+
+
+
+	// Handle thumb selection        
+
+	$(document).ready(function() {
+	    $('.thumb-option').on('click', function() {
+	        // Disable pointer events on all thumb-options
+	        $('.thumb-option').addClass('disabled');
+	        $('.thumb-option').addClass('blurred');
+	        $('.narrator').addClass('blurred');
+
+
+	        // Highlight selected thumb-option
+	        $(this).css('opacity', '1');
+	        $(this).removeClass('blurred');
+	        $(this).addClass('selected');
+
+
+	        // Find the index of the clicked thumb-option
+	        const index = $(this).index('.thumb-option');
+
+	        // Get the corresponding videoId from s.currentList
+	        s.currentVideo = s.currentList[index];
+
+	        // Clear the current s.currentList
+	        s.currentList = [];
+
+	        s.edgesData.forEach(edge => {
+	            if (edge.source === s.currentVideo) {
+	                const matchingNode = s.nodesData.find(node => node.videoId === edge.target);
+	                if (matchingNode) {
+	                    const videoDate = new Date(matchingNode.time);
+	                    const startDate = new Date('2025-02-10');
+	                    const endDate = new Date('2025-02-16');
+
+	                    if (videoDate >= startDate && videoDate <= endDate) {
+	                        s.currentList.push(edge.target);
+	                    }
+	                }
+	            }
+	        });
+
+	        s.userPathData.seedList.push(s.currentVideo);
+	        s.userPathData.videoList = s.userPathData.videoList.concat(s.currentList);
+
+	        for (let i = 0; i < s.currentList.length; i++) {
+	            for (let j = 0; j < s.nodesData.length; j++) {
+	                if (s.nodesData[j].videoId === s.currentList[i]) {
+	                    let node = s.nodesData[j];
+	                    s.userPathData.videoCount++;
+	                    s.userPathData.viewCount += node.viewCount;
+	                    s.userPathData.commentCount += node.commentCount;
+	                    s.userPathData.durationMinCount += node.durationMin;
+	                    s.userPathData.channelList.push(node.channelId);
+	                    s.userPathData.channelTitleList.push(node.channelTitle);
+	                    s.userPathData.tagList = s.userPathData.tagList.concat(node.tags);
+	                    break; // Exit the inner loop once a match is found
+	                }
+	            }
+	        }
+
+	        console.log(`Selected ${s.currentVideo}`);
+	        console.log("Co-comment video list:");
+	        console.log(s.currentList)
+	        console.log("Updated user path data:");
+	        console.log(s.userPathData);
+
+	        $('.main-button').removeClass('invisible');
+	    });
+	});
+%>
+
+
+
+:: 4-0-week-04 {"position":"1000,400","size":"100,100"}
+<div class="main-content gradient-black">
+  <section class="article-section">
+    <div class="row">
+    <h2 class="subtitle"><span class="branch-text">A fourth week of ICE operations...</span></h2>
+      <p class="narrator">Most people who commented on the last video you chose, also commented on these videos.</p>
+      <p class="narrator"> <span class="question">The month is almost over, pick one last video...</span></p>
+    </div>
+  </section>
+</div>
+
+    <div class="thumb-nav-container"></div>
+
+
+<div class="row main-button-container">
+	<div class="main-button invisible">[[Step out of the rabbit hole...->5-0-summary]]</div>
+</div>
+
+
+
+<%
+	// Check if data is loaded
+    
+	if (s.nodesData && s.edgesData) {
+	    console.log("Data loaded.")
+	    // console.log(s.nodesData)
+	    // console.log(s.edgesData)
+	} else {
+	    console.log("Data was not loaded.")
+	}
+
+	// console.log(s.currentList);
+
+
+	// Conditional initial styling
+    $(document).ready(function() {
+        if (s.userPathData.initialBranch == "endorsed") {
+        	$('.branch-text').addClass('endorse-text');
+        } else {
+            $('.branch-text').addClass('resist-text');
+        }
+      })
+
+	// Populate thumb image and title from JSON data
+    
+	$(document).ready(function() {
+	    const thumbContainer = $('.thumb-nav-container'); // Assume there's a container for the thumbs
+	    thumbContainer.empty(); // Clear existing thumb options
+
+	    s.currentList.forEach((currentVideoId, index) => {
+	        const matchingNode = s.nodesData.find(node => node.videoId === currentVideoId);
+	        if (matchingNode) {
+	            // Create the thumb-option structure
+	            const thumbOption = $('<a>').addClass('thumb-option');
+	            const thumbImg = $('<div>').addClass('thumb-img');
+	            const thumbTitle = $('<div>').addClass('thumb-title');
+
+	            // Populate thumb-title
+	            thumbTitle.html(matchingNode.videoTitle);
+
+	            // Set background image for thumb-img
+	            if (matchingNode.videoId) {
+	                // thumbImg.css('background-image', `url("https://img.youtube.com/vi/${matchingNode.videoId}/0.jpg")`);
+	                thumbImg.css('background-image', `url("https://i.ytimg.com/vi/${matchingNode.videoId}/maxresdefault.jpg")`);
+	            }
+
+	            // Assemble the thumb-option
+	            thumbOption.append(thumbImg).append(thumbTitle);
+
+	            // Add to container
+	            thumbContainer.append(thumbOption);
+	        }
+	    });
+	});
+    
+    
+    
+
+	// Handle thumb hover and title reveal        
+
+    $(document).ready(function() {
+
+        $('.thumb-option').on('mouseenter', function() {
+            // change color on mouseenter
+            $(this).find('.thumb-title').css('color', '#F5F5F4');
+        }).on('mouseleave', function() {
+            // Reset color on mouseleave
+            $(this).find('.thumb-title').css('color', '#ADADAD');
+        });
+    });
+
+
+
+
+	// Handle thumb selection        
+
+	$(document).ready(function() {
+	    $('.thumb-option').on('click', function() {
+	        // Disable pointer events on all thumb-options
+	        $('.thumb-option').addClass('disabled');
+	        $('.thumb-option').addClass('blurred');
+	        $('.narrator').addClass('blurred');
+
+
+	        // Highlight selected thumb-option
+	        $(this).css('opacity', '1');
+	        $(this).removeClass('blurred');
+	        $(this).addClass('selected');
+
+
+	        // Find the index of the clicked thumb-option
+	        const index = $(this).index('.thumb-option');
+
+	        // Get the corresponding videoId from s.currentList
+	        s.currentVideo = s.currentList[index];
+
+	        // Clear the current s.currentList
+	        s.currentList = [];
+
+	        s.edgesData.forEach(edge => {
+	            if (edge.source === s.currentVideo) {
+	                const matchingNode = s.nodesData.find(node => node.videoId === edge.target);
+	                if (matchingNode) {
+	                    const videoDate = new Date(matchingNode.time);
+	                    const startDate = new Date('2025-02-17');
+	                    const endDate = new Date('2025-02-20');
+
+	                    if (videoDate >= startDate && videoDate <= endDate) {
+	                        s.currentList.push(edge.target);
+	                    }
+	                }
+	            }
+	        });
+
+	        s.userPathData.seedList.push(s.currentVideo);
+	        s.userPathData.videoList = s.userPathData.videoList.concat(s.currentList);
+
+	        for (let i = 0; i < s.currentList.length; i++) {
+	            for (let j = 0; j < s.nodesData.length; j++) {
+	                if (s.nodesData[j].videoId === s.currentList[i]) {
+	                    let node = s.nodesData[j];
+	                    s.userPathData.videoCount++;
+	                    s.userPathData.viewCount += node.viewCount;
+	                    s.userPathData.commentCount += node.commentCount;
+	                    s.userPathData.durationMinCount += node.durationMin;
+	                    s.userPathData.channelList.push(node.channelId);
+	                    s.userPathData.channelTitleList.push(node.channelTitle);
+	                    s.userPathData.tagList = s.userPathData.tagList.concat(node.tags);
+	                    break; // Exit the inner loop once a match is found
+	                }
+	            }
+	        }
+
+	        console.log(`Selected ${s.currentVideo}`);
+	        console.log("Co-comment video list:");
+	        console.log(s.currentList)
+	        console.log("Updated user path data:");
+	        console.log(s.userPathData);
+
+	        $('.main-button').removeClass('invisible');
+	    });
+	});
+%>
+
+
+
+:: 5-0-summary {"position":"1000,550","size":"100,100"}
+<%
+function countUniqueChannels(list) {
+  return new Set(list).size;
+}
+
+s.userPathData.channelCount = countUniqueChannels(s.userPathData.channelTitleList);
+
+
+s.userPathData.uniqueChannelList = [...new Set(s.userPathData.channelTitleList)]
+
+s.userPathData.durationMinCount = s.userPathData.durationMinCount.toFixed(2);
+%> 
+
+<div class="main-content gradient-black">
+  <section class="article-section">
+    <div class="row">
+        <h2 class="subtitle"><span class="branch-text">This was the path you chose...</span></h2>
+
+      <
+      <p class="narrator"> You were exposed to a total of <strong><span class="branch-text"><%= s.userPathData.videoCount%> videos</span></strong>. 
+      <br/>As of February 20 2025, together they round up a total of: <strong><br /><%= s.userPathData.viewCount%> views</strong>, <strong><%= s.userPathData.commentCount%> comments</strong> and <strong><%= s.userPathData.durationMinCount%> minutes</strong>. <br />
+      </p>
+      <p class="narrator"> You were exposed to <strong><%= s.userPathData.channelCount%> channels:</strong> <br /> <br /> <em><span class="branch-text"><%= s.userPathData.uniqueChannelList%></span></em> <br/><br/><br/></p>
+    </div>
+  </section>
+</div>
+
+    <div class="thumb-nav-container"></div>
+
+<div class="video-container invisible">
+    <iframe id="youtube-player" width="720" height="480" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
+
+  <div class="row main-button-container">
+          <div class="main-button invisible">[[How did most people <br/>comment across videos? ->6-0-outro-graph]]</div>
+  </div>
+  
+
+
+
+<%
+
+
+	// Conditional initial styling
+    $(document).ready(function() {
+        if (s.userPathData.initialBranch == "endorsed") {
+        	$('.branch-text').addClass('endorse-text');
+        } else {
+            $('.branch-text').addClass('resist-text');
+        }
+      })
+      
+      
+      
+
+// Populate thumb image and title from JSON data
+    
+	$(document).ready(function() {
+	    const thumbContainer = $('.thumb-nav-container'); // Assume there's a container for the thumbs
+	    thumbContainer.empty(); // Clear existing thumb options
+
+	    s.userPathData.videoList.forEach((currentVideoId, index) => {
+	        const matchingNode = s.nodesData.find(node => node.videoId === currentVideoId);
+	        if (matchingNode) {
+	            // Create the thumb-option structure
+	            const thumbOption = $('<a>').addClass('thumb-option');
+	            const thumbImg = $('<div>').addClass('thumb-img');
+	            const thumbTitle = $('<div>').addClass('thumb-title');
+
+	            // Populate thumb-title
+	            thumbTitle.html(matchingNode.videoTitle);
+
+	            // Set background image for thumb-img
+	            if (matchingNode.videoId) {
+	                // thumbImg.css('background-image', `url("https://img.youtube.com/vi/${matchingNode.videoId}/0.jpg")`);
+	                thumbImg.css('background-image', `url("https://i.ytimg.com/vi/${matchingNode.videoId}/maxresdefault.jpg")`);
+	            }
+
+	            // Assemble the thumb-option
+	            thumbOption.append(thumbImg).append(thumbTitle);
+
+	            // Add to container
+	            thumbContainer.append(thumbOption);
+	        }
+	    });
+	});
+    
+    
+    
+
+	// Handle thumb hover and title reveal        
+
+    $(document).ready(function() {
+    	$('.thumb-option').addClass('blurred');
+        $('.thumb-title').addClass('blurred');
+
+
+
+        $('.thumb-option').on('mouseenter', function() {
+            // change color on mouseenter
+            $(this).find('.thumb-title').removeClass('blurred');
+            $(this).find('.thumb-title').css('color', '#F5F5F4');
+            $(this).find('.thumb-title').css('cursor', 'pointer');
+            $(this).css('cursor', 'pointer');
+            $(this).removeClass('blurred');
+        }).on('mouseleave', function() {
+            // Reset color on mouseleave
+            $(this).find('.thumb-title').addClass('blurred');
+            $(this).find('.thumb-title').css('color', '#ADADAD');
+            $(this).addClass('blurred');
+        });
+    });
+    
+    
+    
+    
+    
+    
+    
+    /*
+    
+    
+    	// Handle video selection        
+
+	$(document).ready(function() {
+	    $('.thumb-option').on('click', function() {
+	     
+
+	        // Find the index of the clicked thumb-option
+	        const index = $(this).index('.thumb-option');
+
+	        // Get the corresponding videoId from s.currentList
+	        s.currentVideo = s.currentList[index];
+            console.log(`https://www.youtube.com/watch?v=${s.currentVideo}`);
+
+
+	
+	    });
+	});
+    */
+    
+    $(document).ready(function() {
+    $('.thumb-option').on('click', function() {
+        // Find the index of the clicked thumb-option
+        const index = $(this).index('.thumb-option');
+
+        // Get the corresponding videoId from s.userPathData.videoList
+        const newVideoId = s.userPathData.videoList[index];
+
+        // Update the iframe src with the new video ID
+        $('#youtube-player').attr('src', `https://www.youtube.com/embed/${newVideoId}`);
+        $('.main-button').removeClass('invisible');
+        $('.video-container').removeClass('invisible');
+
+
+    });
+});
+
+%> 
+
+
+
+
+
+:: 6-0-outro-graph {"position":"1175,400","size":"100,100"}
+<div class="loading-graph">
+  <p> Loading complete video graph... </p>
+</div>
+<div class="main-content gradient-black">
+  <section class="article-section">
+    <div class="row">
+      <h2 class="subtitle"> Tracing comments on <span class="endorse-text">ICE</span>. First month in <span class="resist-text">YouTube.</span>
+      </h2>
+    </div>
+  </section>
+  <div class="row">
+    <iframe id="cosmograph" title="cosmograph co-comment graph" width="100%" height="720px" src="https://cosmograph.app/run/?data=https://gist.githubusercontent.com/darredondort/9ff38d6a30cc222f2f5413dbc1799642/raw/a32f36747c845e2692ad4e8ed51696ade731c180/20250120-20250220_yt_video-cocomment-net_ICE_USrel_10-edges.csv&meta=https://gist.githubusercontent.com/darredondort/4d508d9b745db410d2274c37ea594229/raw/766fd73d1e8088cf7498bf273150f55a7d19ae29/20250120-20250220_yt_video-cocomment-net_ICE_USrel_10-nodes.csv&source=Source&target=Target&gravity=0.31&repulsion=2&repulsionTheta=2&linkSpring=0.09&linkDistance=20&friction=0.85&renderLabels=true&renderHoveredLabel=true&renderLinks=true&nodeSizeScale=0.4&linkWidthScale=1&linkArrowsSizeScale=1&nodeSize=size-viewCount&nodeColor=color-community&nodeLabel=videoTitle&linkWidth=width-sum-Weight&linkColor=color-sum-Weight&"></iframe>
+  </div>
+  <div class="row">
+    <div class="main-button">[[Try again? ->00-intro]]</div>
+  </div>
+  <section class="article-section">
+    <div class="row">
+      <p class="credits">
+        <span class="credits-subtitle">Data and methodology:</span>
+        <br />
+        <strong>Data source:</strong> Video Co-Comment Network, Video List and Video Comment data collected with Youtube Data Tools (Rieder, 2024). Queried videos most relevant to “ICE” for US audiences, from 2025-01-20 to 2025-02-20. Gathered top 1000 comments for video co-comment crawling and comment list gathering. <br />
+        <br />
+        <strong>Processing:</strong> The 468 resulting videos in the original Video Co-Comment Network dataset were manually checked to discard non-relevant content in regards to the U.S. Immigration and Customs Enforcement (ICE). The remaining videos where sorted by chronological order and view count to select the 200 most viewed YouTube videos of the remaining dataset. Additional processing was made to complete video and thumbnail URLs, calculate video duration in minutes and complete video node metadata from complementary Video List datasets from <a class="repo-link" href="https://ytdt.digitalmethods.net/" target="_blank">YouTube Data Tools</a> with matching IDs. The open source software <a class="repo-link" href="https://gephi.org" target="_blank">Gephi</a> was used to process graph metrics, such as degree, weighted degree and modularity class, by applying the <a class="repo-link" href="https://iopscience.iop.org/article/10.1088/1742-5468/2008/10/P10008/meta" target="_blank">Louvain Method</a> for community detection. The 33 videos published during the first week of the dataset (Feb. 20 to 26) where once again manually examined and qualitatively assessed for their framing and narratives aimed to endorse or resist ICE operations, for the initial branching decision. The subsequent branches follow strictly the edge data from the listed co-commented video nodes, visualized with  <a class="repo-link" href="https://cosmograph.app/" target="_blank">Cosmograph</a>. Made with <a class="repo-link" href="https://twinery.org/" target="_blank">Twine</a>.<br /> The data, code and prompts employed to assist the creation of this interface are available on this <a class="repo-link" href="https://github.com/darredondort/thislandisyourmyland" target="_blank">GitHub repository</a>. 
+      </p>
+      <p class="credits">
+        <span class="credits-subtitle">Credits:</span>
+        <br /> Created by Diego Arredondo Ortiz <br />
+        <br /> This Twine data-driven web experience is a work-in-progress, prototyped for the <em>Digital Storytelling: Models, Trends and Innovation</em> course at the Digital Culture and Emerging Media (DiCEM) masters program at Universitat Pompeu Fabra (UPF), taught by Joaquim Colas Álvarez and Alan Tapscott Baltar. <br /> Barcelona. February 2025. CC BY-NC 4.0. <br />
+        <br />
+      </p>
+    </div>
+    <div class="footer-icons">
+      <div id="icon-cc">
+        <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.en" target="_blank"><img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-nc.svg" alt="CC BY-NC 4.0"></a>
+      </div>
+      <div id="icon-github">
+        <a href="https://github.com/darredondort/thislandisyourmyland" target="_blank"><img height="40" src="https://cdn.simpleicons.org/github/white" /></a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<%
+
+    $(document).ready(function() {
+
+        $('#cosmograph').on('load', function() {
+			console.log("COOOOSMOOO");
+            $('.loading-graph').addClass('invisible');
+
+        })
+    });
+
+%>
+
+
+:: StoryStylesheet [stylesheet]
+@import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap');
+
+
+.schibsted-grotesk-<uniquifier> {
+  font-family: "Schibsted Grotesk", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+
+
+body {
+  margin: 0;
+  font-family: "Schibsted Grotesk", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  background-color: #222222;
+  height:100%;
+}
+  
+tw-story {
+	max-width: 100%;
+  	margin:0;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.vh-row {
+	height: 100vh;
+}
+
+.invisible {
+  pointer-events: none;
+  opacity: 0.0;
+}
+
+.selected {
+	background-color: #222222;
+  	color: white;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.blurred {
+  -webkit-filter: grayscale(100%) blur(5px); 
+}
+
+.gradient-black {
+  background: rgb(214,213,213);
+background: linear-gradient(0deg, rgba(59,59,59,1) 0%, rgba(34,34,34,1) 85%);
+  
+}
+
+.question {
+  color: #222222;
+  background-color: #F5F5F4;
+  font-size: 1.75;
+  font-weight: 600;
+  margin: 2em 0;
+}
+
+
+
+
+
+
+#main-title {
+	font-size: 7em;
+   	margin: 0.25em 1em;
+  	line-height: 1em;
+  	color: #F5F5F4;
+  	font-weight: 800;
+}
+
+.main-title-cointainer {
+	display: flex;
+  	justify-content: flex-start;
+  	align-items: flex-start;
+	background: #222222;
+  	width: 100%;
+  	height: 100%;
+  	mix-blend-mode: lighten;
+  
+}
+
+.strike {
+	color: #e36666;
+	text-decoration: line-through;
+}
+
+.blue {
+  color: #6886c4;
+}
+
+.parallax-cover {
+  background-image: url("https://i.imgur.com/sQv8p7D.jpeg");
+  height: 72vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 0 2em 0;
+}
+
+.full-background-img {
+  background-image: url("https://i.imgur.com/I3G5fuG.png");
+  height: 100vh;
+  width: 100%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+  position:fixed;
+  z-index: 1;
+  mix-blend-mode: overlay;
+  opacity: 1;
+}
+
+.main-content {
+	display: flex;
+  	flex-direction: column;
+  	justify-content: center;
+  	align-items: center;
+    height:100%;
+}
+
+.article-section {
+	display: flex;
+  	flex-direction: column;
+  	justify-content: center;
+  	width: 60%;
+}
+
+
+.subtitle {
+	font-size: 2em;
+  	line-height: 1.15em;
+  	color: #F5F5F4;
+}
+
+
+
+.narrator {
+  	background-color: #222222;
+    color: #F5F5F4;
+  	font-size: 1.5em;
+  	line-height: 1.15em;
+  	margin: 0.5em 1em;
+  	z-index: 1;
+}
+
+.start-button, .main-button {
+	visibility: none;
+  	width: 28%;
+}
+
+.start-button {
+	margin: 0 0 4em 0;
+}
+
+.start-button a, .main-button a {
+	display: flex;
+  	justify-content: center;
+  	align-items: center;
+	background-color: #222222;
+  	border-radius: 25px;
+  	padding: 1em; 
+}
+
+.start-button:hover a, .main-button:hover a {
+	display: flex;
+  	justify-content: center;
+  	align-items: center;
+	background-color: #F5F5F4;
+  	border-radius: 25px;
+  	padding: 1em; 
+    color: #222222;
+}
+
+.start-button a, .main-button a {
+  	font-size: 1.5em;
+  	line-height: 1em;
+  	text-decoration: none;
+  	text-align: center;
+  	color: #F5F5F4;
+    font-family: "Schibsted Grotesk", serif;
+  	font-weight: 900;
+
+}
+
+.start-button a:hover, .main-button a:hover {
+  	text-decoration: none;
+  	text-align: center;
+    color: #222222;
+}
+
+.main-button-container {
+	position: fixed;
+    top: 80vh;
+  	z-index: 2;
+}
+
+.video-container {
+   	position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 720px;
+    height: 480px;
+  	z-index: 4;
+}
+
+
+.branch-container {
+	display: flex;
+  	width: 100%;
+  	justify-content: center;
+  	align-items: center;
+  	flex-direction: row;
+ 	flex-wrap: wrap;
+}
+
+.branch-option {
+    display: flex;
+    width: 50vw;
+  	height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* margin: 5px;*/
+   	/* border-radius: 15px;*/
+  	cursor: pointer;
+}
+
+.branch-option p {
+  font-size: 3em;
+  font-weight: 900;
+  color: #F5F5F4;
+}
+
+.branch-endorse {
+  	background-color: #6886c4;
+}
+
+.branch-resist {
+  	background-color: #e36666;
+}
+
+#endorse:hover, #endorse:active {
+	background-color: #6886c4;
+}
+
+#resist:hover, #resist:active {
+	background-color: #e36666;
+}
+
+.endorse-text {
+	background-color: #6886c4;
+  	color: #F5F5F4;
+}
+
+.resist-text {
+	background-color: #e36666;
+  	color: #F5F5F4;
+}
+
+
+
+.thumb-nav-container {
+	display: flex;
+  	width: 100%;
+  	justify-content: space-around;
+  	align-items: flex-start;
+  	flex-direction: row;
+ 	flex-wrap: wrap;
+}
+
+.thumb-option {
+	display: flex;
+  	width: 360px;
+  	justify-content: flex-start;
+  	align-items: flex-start;
+  	flex-direction: column;
+  	margin: 5px;
+  	cursor: pointer;
+}
+
+
+.thumb-img {
+	display: flex;
+  	width: 360px;
+ 	height: 270px;
+  	background-color: #DCDCDC;
+   	background-size: cover;
+  	-webkit-filter: grayscale(60%)
+}
+
+.thumb-title {
+	color: #ADADAD;
+}
+
+.credits {
+	color: #F5F5F4;
+  	padding: 1em; 
+}
+
+
+.loading-graph {
+	position: absolute;
+    top: 0vh;
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	width: 100%;
+  	height: 100vh;
+  	color: #ADADAD;
+  	margin: auto;
+  	z-index: 0;  
+}
+
+#cosmograph {
+    mix-blend-mode: lighten;
+	/*
+    mix-blend-mode: color-dodge;
+    mix-blend-mode: hard-light;
+    mix-blend-mode: difference;
+    mix-blend-mode: luminosity;
+  	*/  
+  	z-index:3;
+
+}
+
+
+.footer-icons {
+	display: flex;
+  	justify-content: space-around;
+  	align-items: center;
+  	flex-direction: row;
+  	margin: 1em 0;
+  	
+}
+
+
+.repo-link {
+	font-weight: bold;
+  	color: #F5F5F4;
+	text-decoration: none;
+}
+
+.repo-link:hover {
+	font-weight: bold;
+  	color: #e36666;
+	text-decoration: none;
+}
+
+
+.credits-subtitle {
+	font-weight: bold;
+    font-size: 1.25em;
+}
+
+
+
+
